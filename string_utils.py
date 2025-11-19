@@ -17,5 +17,6 @@ def split_at_first_digit(formula):
     number = int(formula[digit_location:])
     return prefix, number
 
+# Test your code with your input
 formula = "Ir6"
 print(split_at_first_digit(formula))
