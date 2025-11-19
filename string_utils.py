@@ -14,16 +14,20 @@ def split_at_digit(formula):
         number = int(formula[digit_location:])
         return prefix, number
 
-def split_before_each_uppercase(formula):
-    result = []
-    current = ""
+def split_before_each_uppercases(formula):
+    # Initialize indices and the result list
+    start = 0
+    split_formula = []
 
-    for char in formula:
-        if char.isupper() and current:
-            result.append(current)
-            current = char
-        else:
-            current += char
+    # Loop through the string starting from the second character
+    for end in range(1, len(formula)):
+        if formula[end].isupper():
+            # Append the substring from start to current end
+            split_formula.append(formula[start:end])
+            # Update start to current end
+            start = end
 
-    result.append(current)
-    return result
+    # Append the last part of the string
+    split_formula.append(formula[start:])
+
+    return split_formula
