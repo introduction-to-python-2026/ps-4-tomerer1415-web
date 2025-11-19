@@ -15,7 +15,7 @@ def split_at_first_digit(formula):
     return prefix, number
 
 
-def split_at_first_digit(formula):
+def split_before_each_uppercase(formula):
     digit_location = 1
 
     for char in formula[1:]:
