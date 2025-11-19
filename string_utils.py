@@ -1,33 +1,20 @@
 def split_at_digit(formula):
-    digit_location = 1
-
-    for char in formula[1:]:
+    for i, char in enumerate(formula):
         if char.isdigit():
-            break
-        digit_location += 1
-
-    if digit_location == len(formula):
-        # No digit found
-        return formula, 1
-    else:
-        prefix = formula[:digit_location]
-        number = int(formula[digit_location:])
-        return prefix, number
+            prefix = formula[:i]
+            number_str = ''
+            while i < len(formula) and formula[i].isdigit():
+                number_str += formula[i]
+                i += 1
+            return prefix, int(number_str)
+    return formula, 1
 
 def split_before_each_uppercases(formula):
-    # Initialize indices and the result list
+    parts = []
     start = 0
-    split_formula = []
-
-    # Loop through the string starting from the second character
-    for end in range(1, len(formula)):
-        if formula[end].isupper():
-            # Append the substring from start to current end
-            split_formula.append(formula[start:end])
-            # Update start to current end
-            start = end
-
-    # Append the last part of the string
-    split_formula.append(formula[start:])
-
-    return split_formula
+    for i, char in enumerate(formula[1:], start=1):
+        if char.isupper():
+            parts.append(formula[start:i])
+            start = i
+    parts.append(formula[start:])
+    return parts
